@@ -1,0 +1,22 @@
+# Configuración de Netlify
+[build]
+  # Directorio de publicación (archivos estáticos)
+  publish = "."
+
+  # Directorio de funciones serverless
+  functions = "netlify/functions"
+
+# Headers de seguridad
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Configuración de la función serverless
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
